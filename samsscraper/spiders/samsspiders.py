@@ -43,7 +43,7 @@ class SamsSpider(scrapy.Spider):
         item = SamsscraperItem()
         item['title'] = response.xpath("//meta[@name='twitter:title']/@content").get()
         item['description'] = response.xpath("//meta[@name='twitter:description']/@content").get()
-        item['price'] = response.xpath("//meta[@property='product:price:amount']/@content").get() # /html/head/meta[14]/@content
+        item['price'] = response.xpath("//meta[@property='product:price:amount']/@content").get()
         item['image_all'] = response.css('div.AspectRatio.AspectRatio--withFallback img::attr(src)').getall()
         yield item
 
