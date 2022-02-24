@@ -7,12 +7,12 @@ Create virtual environment
 ```sh
 pip install -r requirements.txt
 ```
-Open the command prompt: 
+Open the command prompt/terminal
 
 ```sh 
 scrapy crawl sams
 ``` 
-> the above command will output result on the command/terminal.
+> The above command will output result on the command prompt/terminal.
 
 To save the output result into a file (json or csv) then write the below command
 
