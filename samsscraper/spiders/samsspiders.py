@@ -24,14 +24,14 @@ class SamsSpider(scrapy.Spider):
         driver = webdriver.Chrome(driver_path, options=options)
         # go to website
         driver.get("https://in.seamsfriendly.com/collections/shorts")
-        loading_products_page_two = driver.find_elements_by_xpath('//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[4]/div/div[3]/div[2]/button')
+        loading_products_page_two = driver.find_elements_by_xpath('//button[text()="Load more products"]')
         loading_products_page_two[0].click()
         time.sleep(5)
-        loading_products_page_three = driver.find_elements_by_xpath('//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[4]/div/div[3]/div[2]/button')
+        loading_products_page_three = driver.find_elements_by_xpath('//button[text()="Load more products"]')
         loading_products_page_three[0].click()
         time.sleep(5)
 
-        xpath = '//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[2]//a[text()]'
+        xpath = '//*[@class="ProductItem__Title Heading"]/a'
         link_elements = driver.find_elements_by_xpath(xpath)
 
         for link in link_elements:
@@ -43,7 +43,7 @@ class SamsSpider(scrapy.Spider):
         item = SamsscraperItem()
         item['title'] = response.xpath("//meta[@name='twitter:title']/@content").get()
         item['description'] = response.xpath("//meta[@name='twitter:description']/@content").get()
-        item['price'] = response.xpath("/html/head/meta[14]/@content").get()
+        item['price'] = response.xpath("//meta[@property='product:price:amount']/@content").get() # /html/head/meta[14]/@content
         item['image_all'] = response.css('div.AspectRatio.AspectRatio--withFallback img::attr(src)').getall()
         yield item
 
