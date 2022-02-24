@@ -25,10 +25,12 @@ class SamsSpider(scrapy.Spider):
         driver = webdriver.Chrome(driver_path, options=options)
         # go to website
         driver.get("https://in.seamsfriendly.com/collections/shorts")
-        button = driver.find_elements_by_xpath('//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[4]/div/div[3]/div[2]/button')
-        if len(button) > 0:
-            button[0].click()
-            time.sleep(10)
+        Loading_products_page_two = driver.find_elements_by_xpath('//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[4]/div/div[3]/div[2]/button')
+        Loading_products_page_two[0].click()
+        time.sleep(5)
+        Loading_products_page_three = driver.find_elements_by_xpath('//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[4]/div/div[3]/div[2]/button')
+        Loading_products_page_three[0].click()
+        time.sleep(5)
 
         xpath = '//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[2]//a[text()]'
         link_elements = driver.find_elements_by_xpath(xpath)

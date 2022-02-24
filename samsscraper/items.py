@@ -8,8 +8,8 @@ from scrapy.loader import ItemLoader
 from itemloaders.processors import TakeFirst, MapCompose
 from w3lib.html import remove_tags 
 
-def remove_currenc(value): 
-	return value.replace('', '').strip()
+# def remove_currenc(value): 
+# 	return value.replace('', '').strip()
 
 
 class SamsscraperItem(scrapy.Item):
