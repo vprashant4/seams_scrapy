@@ -1,5 +1,5 @@
-import os
-import random
+# import os
+# import random
 import time
 
 # selenium libraries
@@ -8,8 +8,7 @@ from scrapy.utils.project import get_project_settings
 
 import scrapy
 from samsscraper.items import SamsscraperItem
-from scrapy.loader import ItemLoader
-
+# from scrapy.loader import ItemLoader
 
 
 class SamsSpider(scrapy.Spider):
@@ -25,11 +24,11 @@ class SamsSpider(scrapy.Spider):
         driver = webdriver.Chrome(driver_path, options=options)
         # go to website
         driver.get("https://in.seamsfriendly.com/collections/shorts")
-        Loading_products_page_two = driver.find_elements_by_xpath('//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[4]/div/div[3]/div[2]/button')
-        Loading_products_page_two[0].click()
+        loading_products_page_two = driver.find_elements_by_xpath('//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[4]/div/div[3]/div[2]/button')
+        loading_products_page_two[0].click()
         time.sleep(5)
-        Loading_products_page_three = driver.find_elements_by_xpath('//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[4]/div/div[3]/div[2]/button')
-        Loading_products_page_three[0].click()
+        loading_products_page_three = driver.find_elements_by_xpath('//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[4]/div/div[3]/div[2]/button')
+        loading_products_page_three[0].click()
         time.sleep(5)
 
         xpath = '//*[@id="shopify-section-collection-template"]/section/div[3]/div[2]/div[2]/div[2]//a[text()]'
@@ -46,7 +45,5 @@ class SamsSpider(scrapy.Spider):
         item['description'] = response.xpath("//meta[@name='twitter:description']/@content").get()
         item['price'] = response.xpath("/html/head/meta[14]/@content").get()
         item['image_all'] = response.css('div.AspectRatio.AspectRatio--withFallback img::attr(src)').getall()
-
-
         yield item
 
